@@ -11,6 +11,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     formatter?: (value: string) => string | undefined;
 }
 
+export const cpfMask = (cpf?: string | null | undefined)  => {
+    return cpf
+        ?.replace(/\D/g, '') 
+        ?.replace(/(\d{3})(\d)/, '$1.$2') 
+        ?.replace(/(\d{3})(\d)/, '$1.$2')
+        ?.replace(/(\d{3})(\d{1,2})/, '$1-$2')
+        ?.replace(/(-\d{2})\d+?$/, '$1');
+}
+
 export const Input: React.FC<InputProps> = ({
     label,
     columnClasses,
@@ -56,7 +65,7 @@ export const Input: React.FC<InputProps> = ({
 
 export const InputCPF: React.FC<InputProps> = (props: InputProps) => {
     return (
-        <Input {...props} formatter={formatUtils.formatCPF} />
+        <Input {...props} formatter={cpfMask} maxLength={14} />
     )
 }
 

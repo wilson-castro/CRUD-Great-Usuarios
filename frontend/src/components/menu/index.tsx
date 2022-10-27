@@ -7,7 +7,8 @@ export const Menu: React.FC = () => {
                 CRUD Usuários GREAT
             </p>
             <ul className="menu-list">
-                <MenuItem href="/consultas/usuarios" label="Listagem"  />
+                <MenuItem href="/consultas/usuarios" label="Usuários 👥"  />
+                <MenuItem href="/consultas/logs" label="Logs 🗃️"  />
             </ul>
         </aside>
     ) 

@@ -1,0 +1,1 @@
+export { ListagemLogs } from './listagem';

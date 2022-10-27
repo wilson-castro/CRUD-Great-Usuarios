@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { DataTable, DataTablePageParams } from 'primereact/datatable'
+import { DataTable, DataTablePageParams } from 'primereact/datatable';
 import { Column } from 'primereact/column'
 import { Button } from 'primereact/button'
 import { confirmDialog } from 'primereact/confirmdialog'
 import Router from "next/router";
 
 import { Layout } from "components/layout";
-import { Input, InputCPF } from "components/common";
+import { Input, InputCPF } from "components/index";
 import { Usuario } from "app/models/usuarios";
 import { Page } from "app/models/common/page";
 import { useUsuarioService } from "app/services";
@@ -135,8 +135,7 @@ export const ListagemUsuarios: React.FC = () => {
 
       <div className="columns">
         <div className="is-full">
-          
-          <DataTable 
+          <DataTable
             lazy paginator
             loading={loading}
             onPage={handlePage}
@@ -145,12 +144,12 @@ export const ListagemUsuarios: React.FC = () => {
             value={usuarios.content}
             totalRecords={usuarios.totalElements}
             emptyMessage="Nenhum registro encontrado"
-          > 
-            <Column field="id" header="Código" />
-            <Column field="nome" header="Nome" />
-            <Column field="cpf" header="CPF" />
-            <Column field="rg" header="RG" />
-            <Column body={actionTemplate} />
+          >
+            <Column key={1} field="id" header="Código" />
+            <Column key={2} field="nome" header="Nome" />
+            <Column key={3} field="cpf" header="CPF" />
+            <Column key={4} field="rg" header="RG" />
+            <Column key={6} body={actionTemplate} />
           </DataTable>
         </div>
       </div>

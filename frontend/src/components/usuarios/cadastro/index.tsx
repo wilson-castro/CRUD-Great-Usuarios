@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { Usuario } from "../../../app/models/usuarios";
 import { Layout } from "../../layout"
 import { UsuarioForm } from "./form"
 import { useUsuarioService } from "app/services";
 import { Alert } from "components/common/message";
+
+function timeout(delay: number) {
+  return new Promise( res => setTimeout(res, delay) );
+}
 
 export const CadastroUsuarios: React.FC = () => {
   const [usuario, setUsuario] = useState<Usuario>({});
@@ -35,7 +39,11 @@ export const CadastroUsuarios: React.FC = () => {
         .catch(errorHandler);
     } else {
       service.salvar(usuario)
-        .then(() => successHandler("Usuário salvo com sucesso!"))
+        .then(async () => {
+          successHandler("Usuário salvo com sucesso!");
+          await timeout(1000);  
+          Router.push('/consultas/usuarios');
+        })
         .catch(errorHandler);
     }
   };
